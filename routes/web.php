@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\NationBuilderAccess;
+use App\Http\Controllers\NationBuilderEventsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +28,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
     
-    Route::middleware(NationBuilderAccess::class)->group(function () {
-        Route::get('nationbuilder', function () {
-            dd('you are authorized');
-        })->name('nationbuilder.index');
-    });
+    Route::middleware(NationBuilderAccess::class)
+        ->prefix('nationbuilder')
+        ->name('nationbuilder.')
+        ->group(function () {
+            Route::resource('people', NationBuilderPeopleController::class);
+        });
 });
 
 Route::middleware('auth')->group(function () {

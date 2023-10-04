@@ -54,6 +54,54 @@ class NationBuilder
         return json_decode($response->getBody(), true);
     }
 
+    public function post(string $url, ?array $params): ?array
+    {
+        $authToken = $this->getCurrentToken();
+
+        if(! $authToken) {
+            throw new \Illuminate\Auth\AuthenticationException('Unauthenticated.');
+        }
+
+        $response = $this->api->post($url, [
+            'access_token' => $authToken->token,
+            'query' => $params,
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function put(string $url, ?array $params): ?array
+    {
+        $authToken = $this->getCurrentToken();
+
+        if(! $authToken) {
+            throw new \Illuminate\Auth\AuthenticationException('Unauthenticated.');
+        }
+
+        $response = $this->api->put($url, [
+            'access_token' => $authToken->token,
+            'query' => $params,
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function delete(string $url, ?array $params): ?array
+    {
+        $authToken = $this->getCurrentToken();
+
+        if(! $authToken) {
+            throw new \Illuminate\Auth\AuthenticationException('Unauthenticated.');
+        }
+
+        $response = $this->api->delete($url, [
+            'access_token' => $authToken->token,
+            'query' => $params,
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
     public function getOauthLoginUrl($params = []): string
     {
         $defaultParams = [
