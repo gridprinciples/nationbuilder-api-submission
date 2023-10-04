@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'nationbuilder' => [
+        'key' => env('NATIONBUILDER_CLIENT_KEY'),
+        'secret' => env('NATIONBUILDER_CLIENT_SECRET'),
+        'slug' => env('NATIONBUILDER_CLIENT_SLUG'),
+    ],
+
 ];

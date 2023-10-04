@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('nationbuilder.index')" :active="request()->routeIs('nationbuilder.*')">
+                        {{ __('NationBuilder') }}
+                    </x-nav-link>
                 </div>
             </div>
 
